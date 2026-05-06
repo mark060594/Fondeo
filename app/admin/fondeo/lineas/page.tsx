@@ -45,7 +45,7 @@ import { LineaFormDrawer } from "@/components/linea-form-drawer"
 import { ConfirmModal } from "@/components/confirm-modal"
 import { toast } from "sonner"
 
-export default function LineasFondeoPage() {
+function LineasFondeoPageContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { lineas, toggleLineaEstatus, updateLinea } = useFondeoStore()
@@ -363,5 +363,13 @@ export default function LineasFondeoPage() {
         onConfirm={confirmSuspender}
       />
     </div>
+  )
+}
+
+export default function LineasFondeoPage() {
+  return (
+    <React.Suspense fallback={<div className="p-6 text-sm text-muted-foreground">Cargando líneas de fondeo...</div>}>
+      <LineasFondeoPageContent />
+    </React.Suspense>
   )
 }

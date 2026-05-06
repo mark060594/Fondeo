@@ -46,7 +46,7 @@ const estatusColors: Record<string, string> = {
   "Con diferencia": "bg-rose-500/15 text-rose-700 border-rose-200"
 }
 
-export default function DisposicionesPage() {
+function DisposicionesPageContent() {
   const searchParams = useSearchParams()
   const { lineas, disposiciones, updateDisposicion } = useFondeoStore()
   
@@ -278,5 +278,13 @@ export default function DisposicionesPage() {
         onOpenChange={setDrawerOpen}
       />
     </div>
+  )
+}
+
+export default function DisposicionesPage() {
+  return (
+    <React.Suspense fallback={<div className="p-6 text-sm text-muted-foreground">Cargando disposiciones...</div>}>
+      <DisposicionesPageContent />
+    </React.Suspense>
   )
 }

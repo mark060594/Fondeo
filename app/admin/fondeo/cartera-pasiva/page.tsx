@@ -48,7 +48,7 @@ const estatusColors: Record<string, string> = {
   "Liquidado": "bg-slate-500/15 text-slate-700 border-slate-200"
 }
 
-export default function CarteraPasivaPage() {
+function CarteraPasivaPageContent() {
   const searchParams = useSearchParams()
   const { carteraPasiva, updateCarteraPasivaItem } = useFondeoStore()
   
@@ -361,5 +361,13 @@ export default function CarteraPasivaPage() {
         onSave={handleSavePago}
       />
     </div>
+  )
+}
+
+export default function CarteraPasivaPage() {
+  return (
+    <React.Suspense fallback={<div className="p-6 text-sm text-muted-foreground">Cargando cartera pasiva...</div>}>
+      <CarteraPasivaPageContent />
+    </React.Suspense>
   )
 }
